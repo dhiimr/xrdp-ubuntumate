@@ -95,7 +95,7 @@ unzip master.zip
 cd badvpn-master/
 mkdir build
 cd build
-cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -BUILD_UDPGW=1
+cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
 make install
 wget -O /lib/systemd/system/svpn.service https://raw.githubusercontent.com/dhiimr/sshws/main/svpn.service
 systemctl enable svpn
