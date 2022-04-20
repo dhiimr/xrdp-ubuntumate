@@ -1,6 +1,6 @@
 apt update
 
-echo " INSTALLING DROPBEAR
+echo " INSTALLING DROPBEAR"
 apt-get install -y dropbear
 
 cat > /etc/default/dropbear <<\EOF
