@@ -80,7 +80,7 @@ echo " FINISH INSTALLING STUNNEL"
 sleep 1
 clear
 echo "INSTALLING SSLH"
-apt-get install sslh
+apt-get install sslh -y
 wget -O /etc/default/sslh "https://raw.githubusercontent.com/idtunnel/sslh/master/sslh-conf"
 systemctl enable sslh
 systemctl restart ssh
@@ -88,3 +88,16 @@ systemctl restart dropbear
 systemctl restart stunnel4
 systemctl restart sslh
 echo " FINISH ALL DONE"
+sudo apt install stunnel dropbear gcc make cmake build-essential python unzip zip -y
+cd
+wget https://github.com/ambrop72/badvpn/archive/master.zip
+unzip master.zip
+cd badvpn-master/
+mkdir build
+cd build
+cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -BUILD_UDPGW=1
+make install
+wget -O /lib/systemd/system/svpn.service https://raw.githubusercontent.com/dhiimr/sshws/main/svpn.service
+systemctl enable svpn
+systemctl start svpn
+
