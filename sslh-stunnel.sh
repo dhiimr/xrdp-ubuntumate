@@ -1,4 +1,11 @@
 apt update
+country=ID
+state=Bangka Belitung
+locality=Pangkalpinang
+organization=MRz LTd
+organizationalunit=IT
+commonname=sg.istrue.my.id
+email=admin@istrue.my.id
 
 echo " INSTALLING DROPBEAR"
 apt-get install -y dropbear
@@ -54,7 +61,8 @@ accept = 777
 EOF
 
 openssl genrsa -out key.pem 2048
-openssl req -new -x509 -key key.pem -out cert.pem -days 1095
+openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
+-subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 
 cat > /etc/default/stunnel4 <<\EOF
